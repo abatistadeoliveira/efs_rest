@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Investment, Stock
+from .models import Customer, Investment, Stock, Fund
 
 
 class CustomerList(admin.ModelAdmin):
@@ -23,6 +23,14 @@ class StockList(admin.ModelAdmin):
     ordering = ['customer']
 
 
+class FundList(admin.ModelAdmin):
+    list_display = ('customer','category', 'name', 'value', 'recent_date')
+    list_filter = ('customer','category', 'name')
+    search_fields = ('customer','category', 'name')
+    ordering = ['customer']
+
+
 admin.site.register(Customer, CustomerList)
 admin.site.register(Investment, InvestmentList)
 admin.site.register(Stock, StockList)
+admin.site.register(Fund, FundList)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Customer, Investment, Stock
+from .models import Customer, Investment, Stock, Fund
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -18,3 +18,9 @@ class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
         fields = ('pk', 'customer', 'cust_number', 'symbol', 'name', 'shares', 'purchase_price', 'purchase_date')
+
+
+class FundSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fund
+        fields = ('pk', 'customer', 'cust_number', 'category', 'name', 'value', 'recent_date')

@@ -75,3 +75,21 @@ class Stock(models.Model):
 
     def cust_number(self):
         return self.customer.cust_number
+
+
+class Fund(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='funds')
+    category = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    value = models.DecimalField(max_digits=10, decimal_places=2)
+    recent_date = models.DateField(default=timezone.now, blank=True, null=True)
+
+    def created(self):
+        self.recent_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return str(self.customer)
+
+    def cust_number(self):
+        return self.customer.cust_number
